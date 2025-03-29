@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 60px;
+            margin-bottom: 40px;
+            font-size: 19px;
+        }
+
+        .navbar-inverse {
+            background-color:  #080808;;
+            border-color: #333;
+        }
+
+        .navbar-nav > li > a {
+            color: #fff;
+            text-decoration: none;
+            padding: 30px 15px;
+            font-size: 19px;
+        }
+
+
+        /* About Us Section Styling */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #cdc5ee;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+
+        }
+
+        .first-container {
+        width:1620px;
+            padding: 20px;
+            background:rgb(255 255 255 / 36%);
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(247, 28, 28, 0.2);
+            font-family: 'Times New Roman';
+            font-weight: bold;
+            text-align: justify;
+            margin: 90px auto 40px;
+        }
+
+        .aboutus-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            background-color:#cdc5ee;
+            font-weight: bold;
+            margin-left: 400px;
+
+        }
+
+        .about-box {
+            margin: 20px 0;
+            padding: 30px;
+            background:rgb(255 255 255 / 36%);
+            border-radius: 15px;
+            text-align: center;
+            font-size: 18px;
+            transition: transform 0.5s ease, background 0.5s ease;
+            box-shadow: 0px 4px 10px rgba(247, 28, 28, 0.2);
+            text-align: justify;
+        }
+
+        .aboutus-box:hover {
+            animation: border-blink 1s infinite;
+            background: linear-gradient(135deg, #eeb1cd, #9a89fd);
+            color: rgb(10, 10, 10);
+            transform: scale(1.05);
+        }
+
+        .about-heading {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .hover-effect {
+            transition: all 0.3s ease;
+            color: #444;
+        }
+
+        .hover-effect:hover {
+            color: #FDA8CF;
+            transform: scale(1.1);
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            width:100%;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .footer-links a {
+            color: #d199f7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f5e1ec;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li ><a href="/aboutus">About Us</a></li>
+                <li><a href="/contactus">Contact Us</a></li>
+                <li><a href="/text-analyzer">Text Analyzer</a></li>
+                <li><a href="/upload-pdf">Upload PDF</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="first-container container">
+        <h1 class="about-heading hover-effect">ABOUT US</h1>
+    </div>
+    <div class="aboutus-box">
+        <p>Itisha Sakhreliya is an AI/ML intern focused on creating accessible and efficient AI-powered summarization tools. With a commitment to leveraging cutting-edge technologies, she strives to make complex text easier to understand, enhancing productivity and communication. This project is part of her internship under the guidance of Dilip Sir, demonstrating her dedication to solving real-world challenges with AI.</p>
+    </div>
+</div>
+
+    <!-- About Us Section -->
+    <div class="aboutus-section">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="aboutus-box">
+                    <h2>Mission</h2>
+                    <p>Our mission is to empower individuals with innovative AI-driven tools that simplify text summarization and sentiment analysis, providing efficient solutions for a wide range of professional and personal needs.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="aboutus-box">
+                    <h2>Vision</h2>
+                    <p>We aim to become the global leader in AI-driven content summarization, providing intelligent and intuitive solutions for improved communication, productivity, and decision-making.</p>
+                </div>
+            </div>
+
+        </div>
+
+</div>
+    <!-- Footer -->
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+        <p class="copyright"> &copy; 2025 AI Summarizer | All Rights Reserved</p>
+    </footer>
+</body>
+</html>

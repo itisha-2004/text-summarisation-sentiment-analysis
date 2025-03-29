@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization and Sentiment Analysis</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link to the new external CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style> 
+       body {
+    background-color: #cdc5ee;
+    padding-top: 100px;
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+.h2 {
+    font-size: 30px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    font-size: 18px;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 20px;
+}
+
+.white-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.white-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Center the form */
+.center-form {
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+.navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 20px;
+            height: 60px;
+        } b
+
+        .navbar-inverse {
+            background-color: #333;
+            border-color: #333;
+        }
+
+        .navbar-nav > li > a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+
+        .navbar-nav > li > a:hover {
+            background-color: #ddd;
+            color: #000;
+        }
+
+        .navbar-nav > li > a img {
+            height: 20px;
+            width: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+
+.submit-button {
+    background-color: #744db3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #d392ff;
+}
+
+#progress-bar-wrapper {
+    width: 100%;
+    height: 20px;
+    background-color: #f3f3f3;
+    margin-top: 20px;
+    display: none;
+}
+
+#progress-bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #fcdff2, #d22a7e); 
+}
+
+.result {
+    display: none;
+}
+
+.container-scroll {
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    flex-grow: 1; /* Make the container grow and fill available space */
+    padding: 30px; /* Add some padding for better content spacing */
+    border: 1px solid #ddd; /* Optional: Add a border for distinction */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    background-color: #f9f9f9; /* Optional: Change background for better readability */
+}
+
+.footer {
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text color */
+    text-align: center;
+    padding: 10px 0; /* Footer height */
+    position: relative; /* Changed from fixed to relative */
+    width: 100%;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for clarity */
+    margin-top: 30px; /* Ensure footer is separated from content */
+}
+
+.footer-links {
+    list-style: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    display: flex; /* Arrange links horizontally */
+    justify-content: center; /* Center the links */
+    gap: 15px; /* Add space between links */
+}
+
+.footer-links a {
+    color: #d199f7; /* Highlighted link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.footer-links a:hover {
+    color: #f5e1ec; /* Change color on hover */
+}
+
+.social {
+    margin-bottom: 15px; /* Add space below social icons */
+}
+
+.social img {
+    margin: 0 5px;
+    border-radius: 50%;/* Add space between social icons */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+.social img:hover {
+    transform: scale(1.2); /* Enlarge icon on hover */
+}
+
+</style> 
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li ><a href="/" onclick="showHome()">Home</a></li>
+                <li><a href="/aboutus" onclick="showTextAnalyzer()">About us</a></li> 
+                <li><a href="/contactus" onclick="showTextAnalyzer()">Contact us</a></li>
+                <li class="active"><a href="#" onclick="showTextAnalyzer()">Text Analyzer </a></li>
+                <li><a href="#" onclick="showUploadPDF()">Upload PDF</a></li>
+                <li><a href="#" onclick="showYoutubeLink()">YouTube Link</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Account <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/signin">Sign In</a></li>
+                        <li><a href="/signup">Sign Up</a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</div>
+
+
+
+<!-- Dynamic Sections -->
+<div class="container container-scroll">
+
+    <!-- Text Analyzer Section -->
+    <div id="text-analyzer-section" class="section" style="display: block;">
+        <h2>Text Summarization</h2>
+        <form id="text-form" class="form active" action="/summarize_text/" method="post">
+            <div class="form-container">
+                <textarea id="text-input" name="text" class="form-control" rows="5" required placeholder="Enter or paste your text and press 'summarize.'"></textarea>
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Upload PDF Section -->
+    <div id="upload-pdf-section" class="section" style="display: none;">
+        <h2>Upload PDF</h2>
+        <form id="pdf-form" class="form active" action="/upload_pdf/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" required>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <!-- YouTube Link Section -->
+    <div id="youtube-link-section" class="section" style="display: none;">
+        <h2>YouTube Link Summarization</h2>
+        <form id="youtube-form" class="form" action="/summarize_youtube/" method="post">
+            <input type="url" name="video_url" id="video_url" placeholder="Enter YouTube Video Link" required>
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar-wrapper" style="display: none;">
+        <div id="progress-bar" style="width: 0%; height: 20px; background-color: #4caf50;"></div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="result" class="result" style="display: none;">
+        <h2>Analysis Results:</h2>
+        <p><strong>Message:</strong> <span id="message"></span></p>
+        <p id="contentTypeRow" style="display:none;"><strong>Content Type:</strong> <span id="contentType"></span></p>
+        <p id="sentimentRow" style="display:none;"><strong>Sentiment:</strong> <span id="sentiment"></span></p>
+        <p id="subcategoryRow" style="display:none;"><strong>Subcategory:</strong> <span id="subcategory"></span></p>
+        <p id="sentimentScoreRow" style="display:none;"><strong>Sentiment Score:</strong> <span id="sentimentScore"></span></p>
+        <p id="summaryRow" style="display:none;"><strong>Summary:</strong></p>
+        <p id="summaryText"></p>
+        <a id="downloadLink" style="display: none;" href="#" download>Download Summarized PDF</a>
+    </div>
+
+</div>
+
+        <script>
+            // Updated form submission with dynamic progress bar and error handling
+            [document.getElementById('pdf-form'), document.getElementById('youtube-form'), document.getElementById('text-form')].forEach(form => {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    const action = form.getAttribute('action');
+        
+                    document.getElementById('progress-bar-wrapper').style.display = 'block';
+                    let progress = 0;
+                    const progressInterval = setInterval(() => {
+                        if (progress >= 100) {
+                            clearInterval(progressInterval);
+                        } else {
+                            progress += 2; // Adjust increment as needed
+                            document.getElementById('progress-bar').style.width = `${progress}%`;
+                        }
+                    }, 100);
+        
+                    try {
+                        const response = await fetch(action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: { "X-Requested-With": "XMLHttpRequest" }
+                        });
+        
+                        const data = await response.json();
+        
+                        clearInterval(progressInterval);
+                        document.getElementById('progress-bar-wrapper').style.display = 'none';
+        
+                        document.getElementById('result').style.display = 'block';
+                        document.getElementById('message').innerText = data.message;
+        
+                        if (response.ok) {
+                            // Update display only for available data
+                            document.getElementById('contentTypeRow').style.display = data.contentType ? 'block' : 'none';
+                            document.getElementById('contentType').innerText = data.contentType || '';
+        
+                            document.getElementById('sentimentRow').style.display = data.sentiment ? 'block' : 'none';
+                            document.getElementById('sentiment').innerText = data.sentiment || '';
+        
+                            document.getElementById('subcategoryRow').style.display = data.subcategory ? 'block' : 'none';
+                            document.getElementById('subcategory').innerText = data.subcategory || '';
+        
+                            document.getElementById('sentimentScoreRow').style.display = data.sentimentScore ? 'block' : 'none';
+                            document.getElementById('sentimentScore').innerText = data.sentimentScore || '';
+        
+                            document.getElementById('summaryRow').style.display = data.summary ? 'block' : 'none';
+                            document.getElementById('summaryText').innerText = data.summary || '';
+        
+                            if (data.file) {
+                                const downloadLink = document.getElementById('downloadLink');
+                                downloadLink.href = `/static/${data.file}`;
+                                downloadLink.style.display = 'block';
+                            }
+                        } else {
+                            document.getElementById('result').innerHTML = `<p><strong>Error:</strong> ${data.message}</p>`;
+                        }
+                    } catch (error) {
+                        clearInterval(progressInterval);
+                        document.getElementById('progress-bar-wrapper').style.display = 'none';
+                        console.error("Error:", error);
+                        document.getElementById('result').innerHTML = `<p><strong>Error:</strong> Unable to process your request.</p>`;
+                    }
+                });
+            });
+           
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('#home-section, #text-analyzer-section, #upload-pdf-section, #youtube-link-section');
+            sections.forEach(section => section.style.display = 'none');
+            
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+        }
+
+        function showHome() {
+    hideAllSections();
+    document.getElementById("home.html").style.display = "block";
+}
+
+function showTextAnalyzer() {
+    hideAllSections();
+    document.getElementById("text-analyzer-section").style.display = "block";
+}
+
+function showUploadPDF() {
+    hideAllSections();
+    document.getElementById("upload-pdf-section").style.display = "block";
+}
+
+function showYoutubeLink() {
+    hideAllSections();
+    document.getElementById("youtube-link-section").style.display = "block";
+}
+
+function hideAllSections() {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.style.display = "none";
+    });
+}
+</script>
+ 
+       </div> 
+<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+    <div class="social" role="navigation" aria-labelledby="social-heading">
+        <h3 id="social-heading" class="sr-only">Follow us on social media</h3>
+        <div>
+        
+            <a href="https://www.facebook.com/your-profile" aria-label="Facebook" target="_blank" rel="noopener">
+                <img src="static\images\facebook.png" alt="Facebook" style="width: 40px; height: 40x;">
+            </a>
+            <a href="https://twitter.com/your-profile" aria-label="Twitter" target="_blank" rel="noopener">
+                <img src="static\images\twitter.png" alt="Twitter" style="width: 40px; height: 40x;">
+            </a>
+            <a href="https://mastodon.social/@your-profile" aria-label="Mastodon" target="_blank" rel="noopener">
+                <img src="static\images\m.png" alt="Mastodon" style="width: 40px; height: 40px;">
+            </a>
+            <a href="https://www.instagram.com/your-profile" aria-label="Instagram" target="_blank" rel="noopener">
+                <img src="static\images\instagram.jpg" alt="Instagram" style="width: 40px; height: 40px;">
+            </a>
+        </div>
+       
+    </div> 
+
+    <hr class="footer-break">
+    <ul class="footer-links" role="navigation" aria-labelledby="footer-links-heading">
+        <h3 id="footer-links-heading" class="sr-only">Footer Links</h3>
+        <li class="active"><a href="#" onclick="showHome()">Home</a></li>
+        <li><a href="/aboutus" onclick="showTextAnalyzer()">About us</a></li>
+        <li><a href="/contactus" onclick="showTextAnalyzer()">Contact us</a></li>
+        <li><a href="#" onclick="showTextAnalyzer()">Text Analyzer</a></li>
+        <li><a href="#" onclick="showUploadPDF()">Upload PDF</a></li>
+        <li><a href="#" onclick="showYoutubeLink()">YouTube Link</a></li>
+    </ul>
+    <p class="copyright"> &copy; 2025 AI Summarizer | All Rights Reserved</p> 
+</footer>
+
+</body>
+</html>
+ 

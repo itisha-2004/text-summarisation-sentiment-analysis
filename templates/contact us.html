@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="icon" type="image/png" href="image.png">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<style>
+    /* General body styling */
+    body {
+        background-color: #cdc5ee;
+        padding-top: 100px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Navbar styling */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #080808; /* Solid background for navbar */
+        padding: 10px 20px;
+        font-size: 18px;
+        height: 60px;
+        font-family: Arial;
+    }
+
+    .navbar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .navbar ul li {
+        margin-right: 20px;
+    }
+
+    .navbar ul li a {
+        text-decoration: none;
+        color: rgb(218, 214, 214);
+        padding: 10px;
+        font-size: 19px;
+    }
+
+    .navbar ul li a:hover {
+        background-color: #353434;
+        border-radius: 5px;
+    }
+
+    .container {
+        width: 1220px;
+        margin-left:190px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(247, 28, 28, 0.2);
+    }
+
+    /* Hover effect for containers */
+    .form-container:hover, .contact-info div:hover {
+        background-color: #f0f0f0;
+        box-shadow: 0px 0px 10px 4px rgba(247, 28, 28, 0.2); 
+        transition: background-color 0.3s ease;
+    }
+
+    /* Headings */
+    h1, h3 {
+        text-align: center;
+        color: #333;
+    }
+
+    
+/* Button Styling */
+.btn {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 20px;
+  background: white;
+  font-size: 28px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 1s;
+}
+
+.btn:after,
+.btn:before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border: 0px solid #fff;
+  transition: all 1s;
+}
+
+.btn:after {
+  top: -1px;
+  left: -1px;
+  border-top: 5px solid black;
+  border-left: 5px solid black;
+}
+
+.btn:before {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+}
+
+.btn:hover {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.btn:hover:before,
+.btn:hover:after {
+  width: 100%;
+  height: 100%;
+}
+
+/* Data Container */
+.data-container {
+  background: #ffebee;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contact Information Section */
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-info div {
+  text-align: center;
+  padding: 20px;
+  background: rgba(240, 147, 147, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 10px 4px rgba(247, 28, 28, 0.2); 
+}
+
+.contact-info .icon-container {
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.contact-info .text {
+  display: block;
+  color: #333;
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.contact-info .email-link {
+  color: #673ab7;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-info .email-link:hover {
+  text-decoration: underline;
+}
+
+    /* Form container */
+    .form-container {
+        width: 80%;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #cdc5ee;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form__input:hover, .form__div_m textarea:hover {
+        border-color: #007bff;
+        box-shadow: 0px 2px 6px rgba(0, 123, 255, 0.3);
+    }
+
+    /* Form styling */
+    .l-form {
+        width: 100%;
+        padding: 20px;
+        background-color: #cdc5ee;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form__div {
+        position: relative;
+    }
+
+    .form__input, .form__div_m textarea {
+        width: 90%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+        resize: none;
+    }
+
+    .form__button {
+        padding: 10px;
+        font-size: 16px;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 239px;
+        width: 150px;
+    }
+
+    .form__button:hover {
+        background-color: #0056b3;
+    }
+
+    .googlemap {
+        width: 100%;
+        height: 450px;
+        border: 0;
+    }
+
+    /* Footer styling */
+    .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .footer-links a {
+        color: #d199f7;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #f5e1ec;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .contact-info {
+            grid-template-columns: 1fr;
+        }
+
+        .navbar ul {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .navbar ul li {
+            margin-bottom: 10px;
+        }
+    }
+
+    .social {
+        margin-bottom: 15px;
+    }
+
+    .social img {
+        margin: 0 5px;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+
+    .social img:hover {
+        transform: scale(1.2);
+    }
+
+    /* Popup styling */
+    .popup {
+        display: none; 
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .popup-content button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .popup-content button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/aboutus">About Us</a></li>
+        <li><a href="/contactus">Contact Us</a></li>
+    </ul>
+</nav>
+
+
+    <div>
+        <h1>CONTACT US</h1>
+    </div>
+    <div class="first container">
+</section>
+<section id="second">
+<div class="second-container">
+
+    <div class="second-top">
+        <h1 class="second-title"><i>Get in touch with us !</i></h1>
+    </div>
+    <div class="contact-body">
+        <div class="contact-info">
+            <div style=" background-color: #cdc5ee;padding:15px; margin: 10px;">
+                <span style="border-radius: 50%; display: inline-block; overflow: hidden;">
+                    <img src="static/images/phone.png" width="40px" height="40px">
+                </span>
+                <span>PHONE</span>
+                <span class="text" style="padding-top: 10px;">+91 948 446 7560</span><br>
+                <span class="text">+91 848 780 0628</span>
+            </div>
+            <div style=" background-color: #cdc5ee;padding:15px; margin: 10px;">
+                <span style="border-radius: 50%; display: inline-block; overflow: hidden;">
+                    <img src="static/images/mail.png" width="40px" height="40px">
+                </span>
+                <span>EMAIL:</span>
+                <span><a href="itisha:team.mypdf@gmail.com" style="text-decoration: none; color: rgb(103, 12, 248);">itisha.mypdf@gmail.com</a></span>
+            </div>
+            <div style=" background-color: #cdc5ee;padding:15px; margin: 10px;">
+                <span style="border-radius: 50%; display: inline-block; overflow: hidden;">
+                    <img src="static/images/location.png" width="40px" height="40px">
+                </span>
+                <span>ADDRESS</span>
+                <span class="text" style="padding-top: 10px;">GSFC University, Vigyan Bhavan,</span><br>
+                <span class="text">P. O. Fertilizernagar, Vadodara - 391750,</span><br>
+                <span class="text">Gujarat, India</span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+</section>
+<section id="third">
+    <h3>IF YOU GOT ANY QUESTIONS</h3><br>
+    <h3>PLEASE DO NOT HESITATE TO SEND US A MESSAGE</h3>
+    <div class="form-container">
+        
+            <form method="post" class="form">
+                <div class="form__div">
+                    <input type="text" class="form__input" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form__div">
+                    <input type="email" class="form__input" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form__div">
+                    <input type="text" class="form__input" name="subject" placeholder="Subject" required>
+                </div>
+                <div class="form__div_m">
+                    <textarea class="form__input" name="message" placeholder="Message" required></textarea>
+                </div>
+                <button type="submit" class="form__button">Submit</button>
+            </form>
+     
+        
+        {% if success_message %}
+            <div id="successPopup" class="popup" style="display: block;">
+                <div class="popup-content">
+                    <p>{{ success_message }}</p>
+                    <button onclick="closePopup()">OK</button>
+                </div>
+            </div>
+        {% endif %}
+        
+        <script>
+            function closePopup() {
+                document.getElementById('successPopup').style.display = 'none';
+            }
+        </script>
+     </div>   
+<section id="fourth">
+</div>
+<div class="map">
+    <iframe class="googlemap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3689.226162059793!2d73.14473331418306!3d22.38282994555192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc97b15555555%3A0x86e6773a36e1a153!2sGSFC%20University!5e0!3m2!1sen!2sin!4v1661355509952!5m2!1sen!2sin" width="1263" height="450" style="border:0;" allowfullscreen="" loading="fast" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</section>
+<footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+    <div class="social" role="navigation" aria-labelledby="social-heading">
+        <h3 id="social-heading" class="sr-only">Follow us on social media</h3>
+        <div>
+        
+            <a href="https://www.facebook.com/your-profile" aria-label="Facebook" target="_blank" rel="noopener">
+                <img src="static\images\facebook.png" alt="Facebook" style="width: 40px; height: 40x;">
+            </a>
+            <a href="https://twitter.com/your-profile" aria-label="Twitter" target="_blank" rel="noopener">
+                <img src="static\images\twitter.png" alt="Twitter" style="width: 40px; height: 40x;">
+            </a>
+            <a href="https://mastodon.social/@your-profile" aria-label="Mastodon" target="_blank" rel="noopener">
+                <img src="static\images\m.png" alt="Mastodon" style="width: 40px; height: 40px;">
+            </a>
+            <a href="https://www.instagram.com/your-profile" aria-label="Instagram" target="_blank" rel="noopener">
+                <img src="static\images\instagram.jpg" alt="Instagram" style="width: 40px; height: 40px;">
+            </a>
+        </div>
+       
+    </div> 
+
+    <hr class="footer-break">
+    <ul class="footer-links" role="navigation" aria-labelledby="footer-links-heading">
+        <h3 id="footer-links-heading" class="sr-only">Footer Links</h3>
+        <li class="active"><a href="#" onclick="showHome()">Home</a></li>
+        <li><a href="/aboutus" onclick="showTextAnalyzer()">About us</a></li>
+        <li><a href="/contactus" onclick="showTextAnalyzer()">Contact us</a></li>
+        <li><a href="#" onclick="showTextAnalyzer()">Text Analyzer</a></li>
+        <li><a href="#" onclick="showUploadPDF()">Upload PDF</a></li>
+        <li><a href="#" onclick="showYoutubeLink()">YouTube Link</a></li>
+    </ul>
+    <p class="copyright"> &copy; 2025 AI Summarizer | All Rights Reserved</p>
+</footer>
+
+
+    <script src="index.js"></script>
+</body>
+</html>

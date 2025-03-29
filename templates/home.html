@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization and Sentiment Analysis</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style> 
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: #cdc5ee;
+        padding-top: 60px; /* Adjusted to ensure no content is hidden under the navbar */
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto; /* Allow scrolling */
+    }
+    .first-container h1 {
+    font-weight: bold; /* Make the text bold */
+}
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 10px 20px;
+        font-size: 18px;
+        height: 60px;
+        background-color: #333; /* Optional: Adds background to navbar */
+    }
+
+    .heading h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-top: 120px;
+    }
+
+    .features-container {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .explore-title {
+        font-family: 'Brush Script MT', cursive;
+        font-size: 55px;
+        color: #2c3e50;
+        transition: all 0.3s ease;
+    }
+
+    .explore-title:hover {
+        color: #e74c3c;
+    }
+
+    .feature-box {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(247, 28, 28, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-box img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .footer-links a {
+        color: #d199f7;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #f5e1ec;
+    }
+
+    .social {
+        margin-bottom: 15px;
+    }
+
+    .social img {
+        margin: 0 5px;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+
+    .social img:hover {
+        transform: scale(1.2);
+    }
+
+    .first-container {
+        width: 1620px;
+        padding: 20px;
+        background: rgb(255 255 255 / 36%);
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(247, 28, 28, 0.2);
+        font-family: 'Times New Roman';
+        font-weight: bold;
+        text-align: center;
+        margin: 90px auto 40px;
+        font-size: 60px;
+    }
+    /* Container for the new section */
+.container {
+    margin-top: 30px;
+    padding: 0 15px;
+}
+
+/* Left Side Styling */
+.left-side {
+    text-align: left;
+    padding: 20px;
+}
+
+.left-side h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+.left-side p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.left-side .btn {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.left-side .btn:hover {
+    background-color: #45a049;
+}
+
+/* Right Side Image Styling */
+.right-side img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+</style>
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/home" onclick="showHome()">Home</a></li>
+                <li><a href="/aboutus">About us</a></li>
+                <li><a href="/contactus">Contact us</a></li>
+                <li><a href="#">Text Analyzer</a></li>
+                <li><a href="#">Upload PDF</a></li>
+                <li><a href="#">YouTube Link</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Account <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/signin">Sign In</a></li>
+                        <li><a href="/signup">Sign Up</a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="first-container container">
+        <h1 class="about-heading hover-effect">Welcome to AI Summarizer</h1>
+    </div>
+    <!-- Features Section -->
+    <div class="container features-container">
+        <h2 class="explore-title">Explore Our Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="/text-analyzer" class="text-decoration-none">
+                    <div class="feature-box">
+                        <img src="static/images/text.png" alt="Text Analysis Icon">
+                        <h3>Text</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/upload-pdf" class="text-decoration-none">
+                    <div class="feature-box">
+                        <img src="static/images/upload.png" alt="PDF Upload Icon">
+                        <h3>Upload</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/url-analyzer" class="text-decoration-none">
+                    <div class="feature-box">
+                        <img src="static/images/url.png" alt="URL Analysis Icon">
+                        <h3>URL</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+        <div class="social" role="navigation" aria-labelledby="social-heading">
+            <h3 id="social-heading" class="sr-only">Follow us on social media</h3>
+            <div>
+                <a href="https://www.facebook.com/your-profile" aria-label="Facebook" target="_blank" rel="noopener">
+                    <img src="static/images/facebook.png" alt="Facebook" style="width: 40px; height: 40px;">
+                </a>
+                <a href="https://twitter.com/your-profile" aria-label="Twitter" target="_blank" rel="noopener">
+                    <img src="static/images/twitter.png" alt="Twitter" style="width: 40px; height: 40px;">
+                </a>
+                <a href="https://mastodon.social/@your-profile" aria-label="Mastodon" target="_blank" rel="noopener">
+                    <img src="static/images/m.png" alt="Mastodon" style="width: 40px; height: 40px;">
+                </a>
+                <a href="https://www.instagram.com/your-profile" aria-label="Instagram" target="_blank" rel="noopener">
+                    <img src="static/images/instagram.jpg" alt="Instagram" style="width: 40px; height: 40px;">
+                </a>
+            </div>
+        </div> 
+        <hr class="footer-break">
+        <ul class="footer-links" role="navigation" aria-labelledby="footer-links-heading">
+            <h3 id="footer-links-heading" class="sr-only">Footer Links</h3>
+            <li class="active"><a href="#" onclick="showHome()">Home</a></li>
+            <li><a href="/aboutus" onclick="showTextAnalyzer()">About us</a></li>
+            <li><a href="/contactus" onclick="showTextAnalyzer()">Contact us</a></li>
+        </ul>
+        <p class="copyright"> &copy; 2025 AI Summarizer | All Rights Reserved</p> 
+    </footer>
+</body>
+</html>
